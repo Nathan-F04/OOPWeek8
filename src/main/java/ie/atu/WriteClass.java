@@ -9,8 +9,9 @@ public class WriteClass {
         String fileName="File1.txt";
 
 
-      try(FileWriter f =new FileWriter(fileName);){
+      try(FileWriter f =new FileWriter(fileName,true );){
               f.write("Adding data to file");
+              f.write("This hasn't erased the previous text");
               System.out.println("Content successfully updated");
 
       }catch(Exception e){
