@@ -1,33 +1,29 @@
 package ie.atu;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
         Scanner input=new Scanner(System.in);
 
-        //Specify the file name
-        String fileName,fileData;
         System.out.println("Enter filename");
-        fileName=input.nextLine();
+        String fileName=input.nextLine();
 
 
 
-        try(PrintWriter output = new PrintWriter(new FileWriter(fileName,true))){
-            System.out.println("Enter data");
-            fileData=input.nextLine();
-
-            output.println(fileData);
-            System.out.println("Success!");
-
-
-        }catch(Exception e){
+        try{
+            Scanner inputFile= new Scanner(new File(fileName));
+            while(inputFile.hasNext()){
+                String line=inputFile.nextLine();
+                System.out.println(line);
+            }
+        } catch(FileNotFoundException e){
             e.getStackTrace();
-            System.out.println("Error");
+            System.out.println("File not found");
         }
     }
 
 
 }
+
